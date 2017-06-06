@@ -17,14 +17,23 @@ index = {}
 files = []
 
 def on_file(string):
-    if 'IDR714.T' in string or 'IDR713.T' in string or 'IDR71A.T' in string:
+    global index, files
+    if 'IDR714.T' in string:
         print(string)
         if string not in index:
+            print('adding ' + string)
             files.append(string)
 
 def lambda_handler(event, context):
+    global index, files
     # Connecting to FTP
     s3 = boto3.client('s3')
+    
+    s3_res = boto3.resource('s3')
+    my_bucket = s3_res.Bucket(bucket)
+    for file in my_bucket.objects.all():
+        index[file.key] = file.key
+
     try:
         ftp = ftplib.FTP('ftp2.bom.gov.au')
         ftp.login()                                                                                                                                               

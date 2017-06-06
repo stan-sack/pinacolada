@@ -10,9 +10,16 @@ from_path = sys.argv[2]
 to_path = sys.argv[3]
 images = []
 
-for p, d, files in os.walk(from_path):
+already_processed = {}
+
+for p, d, files in os.walk(to_path):
     for f in files:
         if f.endswith('.png') and f.startswith(sys.argv[1]):
+            already_processed[f] = f
+
+for p, d, files in os.walk(from_path):
+    for f in files:
+        if f.endswith('.png') and f.startswith(sys.argv[1]) and f not in already_processed:
             images.append(f)
 
 images.sort()
