@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 
 
-def draw_flow(img, flow, step=32):
+def draw_flow(img, flow, step=8):
     h, w = img.shape[:2]
     y, x = np.mgrid[step/2:h:step, step/2:w:step].reshape(2,-1).astype(int)
     fx, fy = flow[y,x].T
-    print(len(fx))
-    print(512/16, 32*32)
+    #print(len(fx))
+    #print(512/16, 32*32)
     #for x in range(32):
     #    for y in range(32):
     #        if fx[y + x * 32] > 0.001:
@@ -37,8 +37,8 @@ list_names = []
 
 mins = ['00', '06', '12', '18', '24', '30', '36', '42', '48', '54']
 
-mins.reverse()
-for h in range(0, 6):
+#mins.reverse()
+for h in range(0, 10):
     for m in mins:
         list_names.append('processed/IDR714.T.201706090' + str(h ) + m + '.png')
 
@@ -55,9 +55,13 @@ counter = 1
 
 cur_glitch = prvs.copy()
 
+prediction = None
+
 # Until we reach the end of the list...
 while counter < len(list_names):
     # Read the next frame in
+
+    print(list_names[counter])
 
     frame2 = cv2.imread(list_names[counter])
     next =  cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
@@ -73,44 +77,16 @@ while counter < len(list_names):
     
     cv2.imshow('Flow', draw_flow(next, flow))
 
-    cur_glitch = warp_flow(next, flow)
-    cv2.imshow('glitch', cur_glitch)
+    if prediction != None:
+        cv2.imshow('Predicted', prediction)
+        cv2.imshow('Diff', cv2.subtract(next,prediction))
 
-    #flow = cv2.calcOpticalFlowFarneback(prvs, next, 0.5, 3, 15, 3, 10, 1.2, 0) 
+    prediction = warp_flow(next, flow)
 
-    #print('\n\n\nVVV')
-    #print(flow)
-
-    # Normalize horizontal and vertical components
-
-    
-    #print(flow)
-    #print(dir(flow))
-
-    #print(len(flow))
-    #print(len(flow[0]))
-
-    x_count = 0
-    y_count = 0
-    x = 0.0
-    y = 0.0
-    for row in flow:
-        for v in row:
-            if v[0] > 0.0001:
-                x_count += 1
-                x += v[0]
-            if v[1] > 0.0001:
-                y_count += 1
-                y += v[1]
-
-    print('')
-    print(x_count, x, x / x_count)
-    print(y_count, y, y / y_count)
-
-    horz = cv2.normalize(flow[...,0], None, 0, 255, cv2.NORM_MINMAX)     
-    vert = cv2.normalize(flow[...,1], None, 0, 255, cv2.NORM_MINMAX)
-    horz = horz.astype('uint8')
-    vert = vert.astype('uint8')
+#    horz = cv2.normalize(flow[...,0], None, 0, 255, cv2.NORM_MINMAX)     
+#    vert = cv2.normalize(flow[...,1], None, 0, 255, cv2.NORM_MINMAX)
+#    horz = horz.astype('uint8')
+#    vert = vert.astype('uint8')
 
     # Show the components as images
 #    cv2.imshow('Horizontal Component', horz)
@@ -121,18 +97,16 @@ while counter < len(list_names):
 
     # If we get to the end of the list, simply wait indefinitely
     # for the user to push something
-    if counter == len(list_names)-1:
-        k = cv2.waitKey(0) & 0xff
-    else: # Else, wait for 1 second for a key
-        k = cv2.waitKey(1000) & 0xff
+#    if counter == len(list_names)-1:
+#        k = cv2.waitKey(0) & 0xff
+#    else: # Else, wait for 1 second for a key
+    cv2.waitKey(100) & 0xff
 
-    if k == 27:
-        break
-    elif k == ord('s'): # Change
-        cv2.imwrite('opticalflow_horz' + str(counter) + '-' + str(counter+1) + '.pgm', horz)
-        cv2.imwrite('opticalflow_vert' + str(counter) + '-' + str(counter+1) + '.pgm', vert)
+    #if k == 27:
+    #    break
 
     # Increment counter to go to next frame
     counter += 1
 
+print('done')
 cv2.destroyAllWindows()

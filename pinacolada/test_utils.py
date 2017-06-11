@@ -29,7 +29,7 @@ class TestTimeStamps(unittest.TestCase):
         
     
     def test_get_time_stamp(self):
-        self.assertEqual(get_time_stamp('processed/IDR714.T.201706090812.png'), '201706090812')
+        self.assertEqual(utils.get_time_stamp('processed/IDR714.T.201706090812.png'), '201706090812')
 
 
 if __name__ == '__main__':

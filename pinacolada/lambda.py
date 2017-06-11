@@ -18,7 +18,7 @@ files = []
 
 def on_file(string):
     global index, files
-    if 'IDR714.T' in string:
+    if 'IDR714.T' in string or 'IDR713.T' in string:
         print(string)
         if string not in index:
             print('adding ' + string)
@@ -41,8 +41,11 @@ def lambda_handler(event, context):
         ftp.retrlines('NLST', on_file)
 
         for f in files:
-            print(f)
-            ftp.retrbinary('RETR ' + f, open(os.path.join('/tmp', f), 'wb').write)
-            s3.upload_file(os.path.join('/tmp', f), bucket, f)
+            print('downloading ' + f)
+            try:
+                ftp.retrbinary('RETR ' + f, open(os.path.join('/tmp', f), 'wb').write)
+                s3.upload_file(os.path.join('/tmp', f), bucket, f)
+            except Exception as e2:
+                print('Failed downloading ' + f + ':' + str(e2))
     except Exception as e:
         print(str(e))
