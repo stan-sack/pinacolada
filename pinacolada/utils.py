@@ -1,4 +1,22 @@
 from calendar import monthrange
+import os
+
+
+def get_images_in_dir(path, startswith='', as_dict=False, endswith='.png'):
+    if as_dict:
+        images = {}
+    else:
+        images = []
+    print(path)
+    for p, d, files in os.walk(path):
+        for f in files:
+            print(f, startswith)
+            if f.endswith('.png') and (not startswith or f.startswith(startswith)):
+                if as_dict:
+                    images[f] = f
+                else:
+                    images.append(f)
+    return images
 
 
 def get_time_stamp(file_name):
