@@ -21,7 +21,7 @@ def main(argv):
     for t in utils.time_stamps(from_ts, steps):
 
         cur = ''
-        for ti in utils.time_stamps(t, 4):
+        for ti in utils.time_stamps(t, 3):
             cur = ti
         print(t, cur)
         
@@ -38,10 +38,27 @@ def main(argv):
         print(pred_im.shape)
         #cv2.imshow('Pred', pred_im)
 
-        diff_im = cv2.subtract(pred_im, real_im)
+        diff_im = cv2.absdiff(real_im, pred_im)
         #cv2.imshow('Diff', diff_im)
 
-        comb = visualize.create_image([real_im, pred_im, diff_im], 0.8)
+        #comb = visualize.create_image([real_im, pred_im, diff_im], 0.8)
+        #cv2.imshow('Combi', comb)
+
+        nr_im= np.zeros((512, 512, 3), np.uint8)
+
+        count = 0
+        for i in range(512):
+            for j in range(512):
+        #        if abs(real_im[i, j][0] - pred_im[i, j][0]) > 240:
+        #            nr_im[i, j] = [255, 255, 255]
+                #if real_im[i, j][0] == 0 and pred_im[i, j][0] != 0:
+                #    nr_im[i, j] = [255, 255, 255]
+                if pred_im[i, j][0] == 0 and real_im[i, j][0] != 0:
+                    nr_im[i, j] = [255, 255, 255]
+                    count += 1
+        print(count / (512.0*512.0))
+
+        comb = visualize.create_image([real_im, pred_im, diff_im, nr_im], 0.65)
         cv2.imshow('Combi', comb)
 
         k = cv2.waitKey(30) & 0xff
@@ -51,36 +68,6 @@ def main(argv):
         time.sleep(0.2)
 
     return
-
-    images_to_play = utils.get_images_in_dir(from_path, image_prefix)
-    images_to_play.sort()
-
-    count = 1
-    for i in images_to_play:
-        if bg != None:
-            print(dir(bg))
-            print(bg.shape)
-            cv2.imshow('Backrgound', bg)
-        
-        print('Playing {} {}/{} images'.format(i, count, len(images_to_play)))
-        im = cv2.imread(os.path.join(from_path, i))
-        print(im.shape)
-        cv2.imshow('Play'.format(from_path), im)
-
-        imc = bg[6:518, 0:512] + im
-        cv2.imshow('Combined'.format(from_path), imc)
-
-        scale = 0.67
-        comb = visualize.create_image([imc, im, im, im], 0.67)
-        cv2.imshow('Combi', comb)
-
-        k = cv2.waitKey(30) & 0xff
-        if k == 27:
-            break
-        
-        count += 1
-        time.sleep(sleep)
-        
 
 if __name__ == '__main__':
     main(sys.argv[1:])
