@@ -1,17 +1,12 @@
-import AWS from 'aws-sdk'
-import { IMAGE_BUCKET_NAME } from 'config/aws'
+import { IMAGE_BUCKET_URL } from 'config/aws'
 
-const s3 = new AWS.S3()
-
-// Bucket names must be unique across all S3 users
-
-export const getImageList = () => {
-    let imageList = s3.listObjectsV2({ Bucket: IMAGE_BUCKET_NAME }, function (err, data) {
-        if (err) {
-            console.log(err)
-        } else {
-            return data.Contents.map((entry) => (entry.Key))
-        }
-    })
-    return imageList
+export const getNewestImageUri = () => {
+    return fetch(IMAGE_BUCKET_URL)
+    .then(response => response.text())
+    .then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
+    .then(xml => xml.getElementsByTagName('Contents'))
+    .then(htmlContentsCollection => [].slice.call(htmlContentsCollection))
+    .then(contentsArray => contentsArray.map(item => IMAGE_BUCKET_URL + '/' + item.childNodes[0].innerHTML))
+    .then(unsortedImageArray => unsortedImageArray.sort((a, b) => b - a))
+    .then(sortedImageArray => sortedImageArray[0])
 }
