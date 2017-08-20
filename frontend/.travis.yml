@@ -11,12 +11,12 @@ script:
   - cd frontend
   - yarn build
 
-deploy:
+deploy_frontend:
   on:
-    branch: staging
+    branch: dev-bootstrap-frontend
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_ACCESS_KEY_SECRET
-  bucket: "one-road-to-london"
+  bucket: "pina-colada"
   local_dir: dist
   skip_cleanup: true
