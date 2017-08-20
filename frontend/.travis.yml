@@ -1,18 +1,22 @@
 sudo: false
 language: node_js
 node_js:
-  - "5"
-  - "6"
+  - "8"
 
 cache:
-  yarn: true
   directories:
     - node_modules
 
 script:
-  - yarn lint
-  - yarn test
+  - cd frontend
   - yarn build
 
-after_success:
-  - yarn codecov
+deploy:
+  on:
+    branch: staging
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_ACCESS_KEY_SECRET
+  bucket: "one-road-to-london"
+  local_dir: dist
+  skip_cleanup: true
