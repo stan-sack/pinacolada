@@ -12,7 +12,7 @@ script:
   - yarn install
   - yarn build
 
-deploy_frontend:
+deploy:
   on:
     branch: dev-bootstrap-frontend
   provider: s3
