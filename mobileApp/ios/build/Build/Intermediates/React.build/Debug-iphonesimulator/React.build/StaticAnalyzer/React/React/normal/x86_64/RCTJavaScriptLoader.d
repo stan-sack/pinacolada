@@ -1,0 +1,26 @@
+dependencies: \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTJavaScriptLoader.mm \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTMultipartDataTask.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTMultipartStreamReader.h \
+  /Users/stsou/Workspace/pinacolada/mobileApp/node_modules/react-native/React/Base/RCTPerformanceLogger.h
