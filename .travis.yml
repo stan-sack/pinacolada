@@ -17,7 +17,7 @@ deploy:
     branch: staging
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_ACCESS_KEY_SECRET
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: "pina-colada"
   local_dir: dist
   skip_cleanup: true
