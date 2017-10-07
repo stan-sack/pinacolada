@@ -8,3 +8,4 @@ coverage
 .expo/
 npm-debug.*
 build
+!frontend/build

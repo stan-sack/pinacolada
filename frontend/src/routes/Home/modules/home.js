@@ -19,35 +19,33 @@ returns a function for lazy evaluation. It is incredibly useful for
 creating async actions, especially when combined with redux-thunk! */
 
 export const setNewestImageUri = () => {
-    return dispatch => {
-        console.log('called2')
-        getNewestImageUri().then((imageUri) => {
-            console.log(imageUri)
-            dispatch({
-                type    : SET_NEWEST_IMAGE,
-                payload : imageUri
-            })
-        })
-    }
+	return dispatch => {
+		getNewestImageUri().then((imageUri) => {
+			dispatch({
+				type    : SET_NEWEST_IMAGE,
+				payload : imageUri
+			})
+		})
+	}
 }
 
 export const actions = {
-    setNewestImageUri,
+	setNewestImageUri,
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [SET_NEWEST_IMAGE]    : (state, action) => action.payload,
+	[SET_NEWEST_IMAGE]    : (state, action) => action.payload,
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = []
+const initialState = ''
 export default function homeReducer (state = initialState, action) {
-    const handler = ACTION_HANDLERS[action.type]
+	const handler = ACTION_HANDLERS[action.type]
 
-    return handler ? handler(state, action) : state
+	return handler ? handler(state, action) : state
 }

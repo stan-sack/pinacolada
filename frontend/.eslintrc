@@ -19,12 +19,14 @@
     "__COVERAGE__" : false
   },
   "rules": {
-    "key-spacing"          : "off",
-    "jsx-quotes"           : [2, "prefer-single"],
-    "max-len"              : [2, 120, 4],
-    "object-curly-spacing" : [2, "always"],
-    "comma-dangle"         : "off",
-    "indent"               : ["error", 4],
-    "react/jsx-indent"     : ["error", 4],
+    "key-spacing"            : "off",
+    "jsx-quotes"             : [2, "prefer-single"],
+    "max-len"                : [2, 120, 4],
+    "object-curly-spacing"   : [2, "always"],
+    "comma-dangle"           : "off",
+    "indent"                 : ["error", "tab"],
+    "react/jsx-indent"       : ["error", "tab"],
+    "react/jsx-indent-props" : ["error", "tab"],
+    "no-tabs"                : "off"
   }
 }
