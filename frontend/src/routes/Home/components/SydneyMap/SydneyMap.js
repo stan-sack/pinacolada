@@ -3,7 +3,7 @@ import React from 'react'
 import './SydneyMap.scss'
 import { Map, TileLayer } from 'react-leaflet'
 
-const position = [-33.43, 151.13]
+const position = [-33.7, 151.21]
 const SydneyMap = props => (
 	<div>
 		<Map center={position} zoom={5}>
