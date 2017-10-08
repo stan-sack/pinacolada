@@ -9,12 +9,15 @@ const SydneyMap = props => (
 	<div>
 		<Map
 			bounds={bounds}
-			minZoom={5}
+			minZoom={4}
 			maxBounds={bounds}
 			maxBoundsViscosity={1.0}>
 			{
 				props.overlayImageSrc &&
-				<ImageOverlay url={props.overlayImageSrc} bounds={bounds} />
+				<ImageOverlay
+					url={props.overlayImageSrc}
+					bounds={bounds}
+					opacity={0.5} />
 			}
 			<TileLayer
 				url='https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png' />
