@@ -9,7 +9,7 @@ const SydneyMap = props => (
 	<div>
 		<Map
 			bounds={bounds}
-			maxZoom={5}
+			minZoom={5}
 			maxBounds={bounds}
 			maxBoundsViscosity={1.0}>
 			{
