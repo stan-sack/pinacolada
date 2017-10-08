@@ -7,7 +7,14 @@ import { Map, TileLayer, ImageOverlay } from 'react-leaflet'
 const bounds = [[-32.32, 149.49], [-34.52, 152.37]]
 const SydneyMap = props => (
 	<div>
-		<Map bounds={bounds}>
+		<Map
+			bounds={bounds}
+			dragging={false}
+			touchZoom={false}
+			doubleClickZoom={false}
+			scrollWheelZoom={false}
+			boxZoom={false}
+			keyboard={false}>
 			{
 				props.overlayImageSrc &&
 				<ImageOverlay url={props.overlayImageSrc} bounds={bounds} />

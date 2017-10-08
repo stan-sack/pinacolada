@@ -11,7 +11,6 @@ import SydneyMap from '../SydneyMap'
 export const HomeView = (props) => (
 	<div>
 		<button onClick={props.setNewestImageUri}>Click here to fetch latest image</button><br /><br />
-		<img src={props.imageUri} />
 		<SydneyMap overlayImageSrc={props.imageUri} />
 
 	</div>
