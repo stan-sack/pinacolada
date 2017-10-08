@@ -9,12 +9,9 @@ const SydneyMap = props => (
 	<div>
 		<Map
 			bounds={bounds}
-			dragging={false}
-			touchZoom={false}
-			doubleClickZoom={false}
-			scrollWheelZoom={false}
-			boxZoom={false}
-			keyboard={false}>
+			maxZoom={5}
+			maxBounds={bounds}
+			maxBoundsViscosity={1.0}>
 			{
 				props.overlayImageSrc &&
 				<ImageOverlay url={props.overlayImageSrc} bounds={bounds} />
