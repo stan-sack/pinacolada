@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import './SydneyMap.scss'
 import { Map, TileLayer, ImageOverlay } from 'react-leaflet'
 
-const position = [-33.7, 151.21]
-const bounds = [[-34.28, 150.50], [-33.13, 151.9]]
+// const position = [-33.7, 151.21]
+const bounds = [[-32.32, 149.49], [-34.52, 152.37]]
 const SydneyMap = props => (
 	<div>
-		<Map center={position} zoom={4}>
+		<Map bounds={bounds}>
 			{
 				props.overlayImageSrc &&
 				<ImageOverlay url={props.overlayImageSrc} bounds={bounds} />
