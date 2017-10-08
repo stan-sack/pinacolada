@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './SydneyMap.scss'
 import { Map, TileLayer, ImageOverlay } from 'react-leaflet'
+import SearchControl from '../SearchControl'
 
-// const position = [-33.7, 151.21]
 const bounds = [[-32.32, 149.49], [-34.52, 152.37]]
 const SydneyMap = props => (
 	<div>
@@ -19,6 +19,7 @@ const SydneyMap = props => (
 					bounds={bounds}
 					opacity={0.5} />
 			}
+			<SearchControl />
 			<TileLayer
 				url='https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png' />
 		</Map>
