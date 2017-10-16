@@ -9,4 +9,4 @@ const Routes = {
     MapScreen: { screen: MapScreen, title: 'Map' },
 };
 
-export default Routes;
+export default Routes

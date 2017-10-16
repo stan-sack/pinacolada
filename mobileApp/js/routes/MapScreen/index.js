@@ -1,3 +1,3 @@
-import MapScreen from './MapScreen'
+import MapScreen from './MapScreenContainer'
 
 export default MapScreen

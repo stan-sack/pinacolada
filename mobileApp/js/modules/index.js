@@ -1,8 +1,9 @@
-import { combineReducers } from "redux";
-// import cars from "./cars";
+import { combineReducers } from 'redux'
+import mapState from './mapState/reducer'
 
 export default function getRootReducer(navReducer) {
     return combineReducers({
         nav: navReducer,
+        mapState,
     });
 }

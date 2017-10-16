@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Text } from "react-native";
 import { Provider, connect } from "react-redux";
 import { StackNavigator, addNavigationHelpers } from "react-navigation";
-
 import Routes from "./routes";
-
 import getStore from "./store";
 
 const AppNavigator = StackNavigator(Routes, {

@@ -1,0 +1,1 @@
+export const SET_NEWEST_IMAGE = 'SET_NEWEST_IMAGE'
