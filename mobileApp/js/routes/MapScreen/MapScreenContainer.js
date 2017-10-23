@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
-import { setNewestImageUri } from '../../modules/mapState/actionCreators'
+import { setNewestImageUri, setCurrentPosition } from '../../modules/mapState/actionCreators'
 
 import MapScreen from './MapScreen'
 
 const mapDispatchToProps = {
-    setNewestImageUri
+    setNewestImageUri,
+    setCurrentPosition
 }
 
 const mapStateToProps = (state) => ({
-    newestImageUri : state.mapState.newestImageUri
+    newestImageUri: state.mapState.newestImageUri,
+    currentPosition: state.mapState.currentPosition 
 })
 
 

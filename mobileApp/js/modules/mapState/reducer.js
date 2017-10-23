@@ -1,7 +1,8 @@
 import * as actions from './actions'
 
 const initialState = {
-	newestImageUri: ''
+	newestImageUri: '',
+	currentPosition: {}
 }
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
 		return {
 			...state,
 			newestImageUri: action.payload
+		}
+	case actions.SET_CURRENT_POSITION:
+		return {
+			...state,
+			currentPosition: action.payload
 		}
 	default:
 		return state
