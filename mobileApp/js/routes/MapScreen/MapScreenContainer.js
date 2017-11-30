@@ -1,16 +1,20 @@
 import { connect } from 'react-redux'
-import { setNewestImageUri, setCurrentPosition } from '../../modules/mapState/actionCreators'
-
+import { setUserLocation, updatePositionOfInterest, updateCurrentViewport,
+	updateShowGeoSearchList } from '../../modules/mapState/actionCreators'
 import MapScreen from './MapScreen'
 
 const mapDispatchToProps = {
-    setNewestImageUri,
-    setCurrentPosition
+	setUserLocation,
+	updatePositionOfInterest,
+	updateCurrentViewport,
+	updateShowGeoSearchList
 }
 
-const mapStateToProps = (state) => ({
-    newestImageUri: state.mapState.newestImageUri,
-    currentPosition: state.mapState.currentPosition 
+const mapStateToProps = state => ({
+	userLocation: state.mapState.userLocation,
+	positionOfInterest: state.mapState.positionOfInterest,
+	currentViewport: state.mapState.currentViewport,
+	shouldShowGeoSearchList: state.mapState.shouldShowGeoSearchList
 })
 
 

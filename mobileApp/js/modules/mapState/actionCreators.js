@@ -1,21 +1,21 @@
 import * as actions from './actions'
-import { getNewestImageUri } from '../../helpers/s3helper'
 
-export const setNewestImageUri = () => {
-	return dispatch => {
-		getNewestImageUri().then((imageUri) => {
-			dispatch({
-				type    : actions.SET_NEWEST_IMAGE,
-				payload : imageUri
-			})
-		})
-	}
-}
+export const setUserLocation = position => ({
+	type: actions.SET_USER_LOCATION,
+	payload: position,
+})
 
-export const setCurrentPosition = (position) => {
-	console.log(position)
-	return {
-		type: actions.SET_CURRENT_POSITION,
-		payload: position
-	}
-}
+export const updatePositionOfInterest = position => ({
+	type: actions.UPDATE_POSITION_OF_INTEREST,
+	payload: position,
+})
+
+export const updateCurrentViewport = viewport => ({
+	type: actions.UPDATE_CURRENT_VIEWPORT,
+	payload: viewport,
+})
+
+export const updateShowGeoSearchList = bool => ({
+	type: actions.UPDATE_SHOULD_SHOW_GEO_SEARCH_LIST,
+	payload: bool
+})

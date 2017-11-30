@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 import mapState from './mapState/reducer'
 
 export default function getRootReducer(navReducer) {
-    return combineReducers({
-        nav: navReducer,
-        mapState,
-    });
+	return combineReducers({
+		nav: navReducer,
+		mapState,
+	})
 }
