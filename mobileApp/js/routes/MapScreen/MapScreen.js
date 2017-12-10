@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, StyleSheet, Dimensions, StatusBar } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import MapView, { PROVIDER_GOOGLE, UrlTile } from 'react-native-maps'
 import SearchBar from '../../components/SearchBar'
+import RainfallChart from '../../components/RainfallChart'
 import AnimatedMarker from '../../components/AnimatedMarker'
 import { TILE_FOLDER_URL } from '../../config/aws'
 // import Icon from 'react-native-vector-icons/FontAwesome'
@@ -39,29 +41,29 @@ class MapScreen extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
 		return (
-			<View style={styles.container}>
+			<View style={mapStyles.container}>
+				<StatusBar hidden />
 				<MapView.Animated
 					onPanDrag={() => {
 						this.searchBarRef.blur()
-						this.props.updateShowGeoSearchList(false)
+						// this.props.updateShowGeoSearchList(false)
 					}}
 					onPress={() => {
 						this.searchBarRef.blur()
-						this.props.updateShowGeoSearchList(false)
+						// this.props.updateShowGeoSearchList(false)
 					}}
 					onLongPress={() => {
 						this.searchBarRef.blur()
-						this.props.updateShowGeoSearchList(false)
+						// this.props.updateShowGeoSearchList(false)
 					}}
 					onMarkerSelect={() => {
 						this.searchBarRef.blur()
-						this.props.updateShowGeoSearchList(false)
+						// this.props.updateShowGeoSearchList(false)
 					}}
 					customMapStyle={mapStyle}
 					provider={PROVIDER_GOOGLE}
-					style={styles.map}
+					style={mapStyles.map}
 					region={new MapView.AnimatedRegion({
 						latitude: this.props.currentViewport.lat,
 						longitude: this.props.currentViewport.lng,
@@ -82,15 +84,16 @@ class MapScreen extends React.Component {
 					}
 					{this.props.userLocation && <AnimatedMarker position={this.props.userLocation} />}
 				</MapView.Animated>
-				<View style={{ ...StyleSheet.absoluteFillObject }}>
-					<SearchBar
-						updateShowGeoSearchList={this.props.updateShowGeoSearchList}
-						shouldShowGeoSearchList={this.props.shouldShowGeoSearchList}
-						setRef={this.setSearchBarRef}
-						userLocation={this.props.userLocation}
-						updatePositionOfInterest={this.props.updatePositionOfInterest} />
-
-				</View>
+				<SearchBar
+					shouldShowListView={this.props.shouldShowListView}
+					setShouldShowListView={this.props.setShouldShowListView}
+					updateNoRowsToDisplay={this.props.updateNoRowsToDisplay}
+					noRowsToDisplay={this.props.noRowsToDisplay}
+					setTextInputRef={this.setSearchBarRef}
+					textInputRef={this.searchBarRef}
+					userLocation={this.props.userLocation}
+					updatePositionOfInterest={this.props.updatePositionOfInterest} />
+				<RainfallChart />
 			</View>
 		)
 	}
@@ -102,32 +105,47 @@ MapScreen.propTypes = {
 	// positionOfInterest: PropTypes.object,
 	updatePositionOfInterest: PropTypes.func.isRequired,
 	// updateCurrentViewport: PropTypes.func.isRequired,
+	updateNoRowsToDisplay: PropTypes.func.isRequired,
+	noRowsToDisplay: PropTypes.number.isRequired,
 	currentViewport: PropTypes.object,
-	updateShowGeoSearchList: PropTypes.func.isRequired,
-	shouldShowGeoSearchList: PropTypes.bool.isRequired
+	shouldShowListView: PropTypes.bool.isRequired,
+	setShouldShowListView: PropTypes.func.isRequired,
 }
 
 
-const styles = StyleSheet.create({
+const mapStyles = StyleSheet.create({
 	container: {
-		...StyleSheet.absoluteFillObject,
+		borderWidth: 0.8,
+		borderColor: 'green',
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0,
+		// width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height,
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
-	bubble: {
-		top: 0,
-		backgroundColor: 'rgba(255,255,255,0.7)',
-		paddingHorizontal: 18,
-		paddingVertical: 12,
-		borderRadius: 20,
-	},
-	latlng: {
-		width: 200,
-		alignItems: 'stretch',
-	},
 	map: {
-		...StyleSheet.absoluteFillObject,
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		bottom: 0,
+		right: 0,
+		// justifyContent: 'flex-end',
+		// alignItems: 'center',
+		// width: Dimensions.get('window').width,
+		// height: Dimensions.get('window').height,
 	},
 })
+
+// const styles = EStyleSheet.create({
+// 	searchBar: {
+// 		position: 'absolute',
+// 		left: 0,
+// 		right: 0,
+// 	}
+// })
 
 export default MapScreen

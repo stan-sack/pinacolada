@@ -63,16 +63,19 @@ class AnimatedMarker extends React.Component {
 			<View>
 				<AnimatedMapMarker
 					anchor={{ x: 0.5, y: 0.5 }}
-					style={{ opacity: this.state.markerBackgroundOpacity }}
+					style={{ opacity: this.state.markerBackgroundOpacity, zIndex: 50 }}
 					coordinate={this.props.position}
 				>
-					<AnimatedIcon name='circle' color='#4F8EF7' style={{ fontSize: this.state.markerBackgroundSize }} />
+					<AnimatedIcon
+						name='circle'
+						color='#4F8EF7'
+						style={{ fontSize: this.state.markerBackgroundSize, zIndex: 50 }} />
 				</AnimatedMapMarker>
-				<MapView.Marker anchor={{ x: 0.5, y: 0.5 }} coordinate={this.props.position}>
-					<Icon name='circle' size={15} color='#4F8EF7' />
+				<MapView.Marker anchor={{ x: 0.5, y: 0.5 }} coordinate={this.props.position} style={{ zIndex: 51 }}>
+					<Icon name='circle' size={15} color='#4F8EF7' style={{ zIndex: 51 }} />
 				</MapView.Marker>
-				<MapView.Marker anchor={{ x: 0.5, y: 0.5 }} coordinate={this.props.position}>
-					<Icon name='circle-o' size={15} color='white' />
+				<MapView.Marker anchor={{ x: 0.5, y: 0.5 }} coordinate={this.props.position} style={{ zIndex: 52 }}>
+					<Icon name='circle-o' size={15} color='white' style={{ zIndex: 52 }} />
 				</MapView.Marker>
 			</View>
 		)

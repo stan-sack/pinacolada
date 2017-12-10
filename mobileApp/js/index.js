@@ -5,9 +5,13 @@ import { StackNavigator, addNavigationHelpers } from 'react-navigation'
 import Routes from './routes'
 import getStore from './store'
 
+import EStyleSheet from 'react-native-extended-stylesheet'
+EStyleSheet.build({})
+
 const AppNavigator = StackNavigator(Routes, {
 	navigationOptions: ({ navigation }) => ({
 		title: navigation.state.routeName,
+		header: false
 	}),
 })
 

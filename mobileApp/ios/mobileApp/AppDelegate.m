@@ -31,6 +31,17 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;
+	
+	for (NSString* family in [UIFont familyNames])
+	{
+		NSLog(@"%@", family);
+		
+		for (NSString* name in [UIFont fontNamesForFamilyName: family])
+		{
+			NSLog(@"  %@", name);
+		}
+	}
+	
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;

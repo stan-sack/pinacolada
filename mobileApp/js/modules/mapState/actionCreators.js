@@ -19,3 +19,13 @@ export const updateShowGeoSearchList = bool => ({
 	type: actions.UPDATE_SHOULD_SHOW_GEO_SEARCH_LIST,
 	payload: bool
 })
+
+export const updateNoRowsToDisplay = num => ({
+	type: actions.UPDATE_NO_ROWS_TO_DISPLAY,
+	payload: num
+})
+
+export const setShouldShowListView = bool => ({
+	type: actions.SET_SHOULD_SHOW_LIST_VIEW,
+	payload: bool
+})

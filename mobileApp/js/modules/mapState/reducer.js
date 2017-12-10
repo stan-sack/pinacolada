@@ -3,7 +3,8 @@ import { getAspectRatio } from '../../helpers/meta'
 
 
 const initialState = {
-	shouldShowGeoSearchList: false,
+	shouldShowListView: false,
+	noRowsToDisplay: 0,
 	userLocation: undefined,
 	positionOfInterest: undefined,
 	currentViewport: {
@@ -31,10 +32,15 @@ export default (state = initialState, action) => {
 			...state,
 			currentViewport: action.payload,
 		}
-	case actions.UPDATE_SHOULD_SHOW_GEO_SEARCH_LIST:
+	case actions.UPDATE_NO_ROWS_TO_DISPLAY:
 		return {
 			...state,
-			showGeoSearchList: action.payload
+			noRowsToDisplay: action.payload,
+		}
+	case actions.SET_SHOULD_SHOW_LIST_VIEW:
+		return {
+			...state,
+			shouldShowListView: action.payload,
 		}
 	default:
 		return state

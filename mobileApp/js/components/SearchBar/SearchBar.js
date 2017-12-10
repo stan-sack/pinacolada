@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, StyleSheet } from 'react-native'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { View, StyleSheet, Dimensions } from 'react-native'
+import { GooglePlacesAutocomplete } from '../../lib/GooglePlacesAutocomplete/GooglePlacesAutocomplete'
 import Icon from 'react-native-vector-icons/EvilIcons'
 
 const getUserLocation = (userLocation) => {
-	console.log('re-rendering')
 	if (userLocation !== undefined) {
 		return [{
 			description: 'Current location',
@@ -26,75 +25,79 @@ const getUserLocation = (userLocation) => {
 	}
 }
 
-const SearchBar = (props) => {
-	return (
-		<GooglePlacesAutocomplete
-			textInputProps={{
-				ref: (input) => { console.log(input); props.setRef(input) },
-				onFocus: () => props.updateShowGeoSearchList(true),
-				// onBlur: () => {this.setState},
-				onChangeText: text => {
-					console.log(text)
-					if (text === '') {
-						console.log('blurring')
-						console.log(this)
-					}
-				},
-			}}
-			placeholder='Search'
-			minLength={2}
-			autoFocus={false}
-			returnKeyType='search'
-			listViewDisplayed={'auto'}
-			fetchDetails
-			renderDescription={row => row.description}
-			onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-				console.log('called search')
-				console.log(data)
-				console.log(details)
-				props.updatePositionOfInterest(details.geometry)
-			}}
-			getDefaultValue={() => ''}
-			query={{
-				// available options: https://developers.google.com/places/web-service/autocomplete
-				key: 'AIzaSyAvKxnypL99Q72vL9uCQeobpZ5GXUrMorE',
-				language: 'en', // language of the results
-			}}
+class SearchBar extends React.Component {
+	getStyle(noRows) {
+		return {
+			textInputContainer: {
+				width: '100%',
+			},
+			description: {
+				fontWeight: 'bold',
+			},
+			predefinedPlacesDescription: {
+				color: '#1faadb',
+			},
+			textInput: {
+				// textAlign: 'center'
+			},
+			listView: {
+				backgroundColor: 'white',
+				maxHeight: noRows * 44
+			},
+			container: {
+				flex: 1,
+				paddingTop: '5%',
+				width: '90%'
+			}
+		}
+	}
+	render() {
+		return (
+			<GooglePlacesAutocomplete
+				textInputProps={{
+					ref: (input) => { this.props.setTextInputRef(input) },
+					onBlur: () => { this.props.setShouldShowListView(false) },
+					onFocus: () => { this.props.setShouldShowListView(true) },
+					onChangeText: text => {
+						if (text === '') {
+							// this.props.textInputRef.blur()
+						}
+					},
+				}}
+				placeholder='Search'
+				minLength={2}
+				autoFocus={false}
+				returnKeyType='search'
+				listViewDisplayed={this.props.shouldShowListView}
+				fetchDetails
+				renderDescription={row => row.description}
+				onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+					this.props.updatePositionOfInterest(details.geometry)
+				}}
+				getDefaultValue={() => ''}
+				query={{
+					// available options: https://developers.google.com/places/web-service/autocomplete
+					key: 'AIzaSyAvKxnypL99Q72vL9uCQeobpZ5GXUrMorE',
+					language: 'en', // language of the results
+				}}
 
-			styles={{
-				textInputContainer: {
-					width: '100%',
-				},
-				description: {
-					fontWeight: 'bold',
-				},
-				predefinedPlacesDescription: {
-					color: '#1faadb',
-				},
-				textInput: {
-					// textAlign: 'center'
-				},
-				listView: {
-					backgroundColor: 'white',
-				},
-				container: {
-					flex: 0.3
-				}
-			}}
-			nearbyPlacesAPI='GooglePlacesSearch'
-			GoogleReverseGeocodingQuery={{
-				key: 'AIzaSyCo4mdlERksiA6y7OOtztUZ_MHV8l4mc2w',
-			}}
-			GooglePlacesSearchQuery={{
-				rankby: 'distance',
-			}}
-			debounce={200}
-			predefinedPlaces={getUserLocation(props.userLocation)}
-			predefinedPlacesAlwaysVisible={false}
-			renderLeftButton={
-				() => <View style={styles.searchIconContainer}><Icon name='search' size={25} /></View>
-			} />
-	)
+				styles={this.getStyle(this.props.noRowsToDisplay)}
+				nearbyPlacesAPI='GooglePlacesSearch'
+				GoogleReverseGeocodingQuery={{
+					key: 'AIzaSyCo4mdlERksiA6y7OOtztUZ_MHV8l4mc2w',
+				}}
+				GooglePlacesSearchQuery={{
+					rankby: 'distance',
+				}}
+				onUpdate={(length) => { this.props.updateNoRowsToDisplay(Math.min(length, 4)) }}
+				debounce={200}
+				predefinedPlaces={getUserLocation(this.props.userLocation)}
+				predefinedPlacesAlwaysVisible={false}
+				renderLeftButton={
+					() => <View style={styles.searchIconContainer}><Icon name='search' size={25} /></View>
+				} />
+		)
+	}
 }
 
 const styles = StyleSheet.create({
@@ -107,14 +110,26 @@ const styles = StyleSheet.create({
 	searchIcon: {
 		margin: 'auto',
 	},
+	wrapper: {
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height,
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+	}
 })
 
 SearchBar.propTypes = {
 	updatePositionOfInterest: PropTypes.func.isRequired,
 	userLocation: PropTypes.object,
-	setRef: PropTypes.func.isRequired,
-	updateShowGeoSearchList: PropTypes.func.isRequired,
-	shouldShowGeoSearchList: PropTypes.bool
+	noRowsToDisplay: PropTypes.number.isRequired,
+	updateNoRowsToDisplay: PropTypes.func.isRequired,
+	setTextInputRef: PropTypes.func.isRequired,
+	// textInputRef: PropTypes.object,
+	shouldShowListView: PropTypes.bool.isRequired,
+	setShouldShowListView: PropTypes.func.isRequired,
 }
 
 export default SearchBar
