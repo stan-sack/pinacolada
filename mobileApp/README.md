@@ -1,3 +1,41 @@
+# Getting Started
+
+## Prerequisites
+
+* You have [brew](https://brew.sh/) installed if you are using a mac
+* You have **Node.js** and **npm** set up on your machine
+  * using [nvm](http://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/) is the best way to do this
+    * Check node is installed with `$ node --version`
+    * check npm is installed with `$ npm --version`
+* You have a Github account
+* You have xCode installed
+* You have Android Studio installed
+
+## Contribution Guide
+
+* Fork this repository to your own account
+* Clone your forked repo git `$ git clone git@github.com:<your-user>/pinacolada.git`
+* Pick an issue from the [issue tracker](https://github.com/stan-sack/pinacolada/issues) and create a branch for the work
+* When you are happy with your work, submit a pull request and someone will review and merge your work
+
+## Running a dev environment
+
+* `$ cd pinacolada/mobileApp`
+* `$ npm install`
+* `$ npm run android` or `$ npm run ios`
+* The emulator should start now and your app should open
+  * This requires that no process is using port 8081 (If you have ever installed MacAffee this will fail)
+  * if you have an android device connected the app should install and open on your device
+* Change some code and save
+* Bring up the dev menu on your emulator/device
+  * **Ctrl - r** on ios (I think)
+  * **Ctrl - m** on Android emulator (I think)
+  * Shake the device if installed on Android
+* Enable live reload so you don't have to continually reload manually
+* Check that the app reloads your changes
+
+# Create React Native App Docs
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

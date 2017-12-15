@@ -4,6 +4,9 @@ import { View, Dimensions, Text } from 'react-native'
 import { VictoryLine, VictoryVoronoiContainer, VictoryScatter, VictoryGroup } from 'victory-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import WeatherIcons from '../WeatherIcons'
+import RainIcon from '../RainIcon'
+import ThunderIcon from '../ThunderIcon'
+import SnowIcon from '../SnowIcon'
 
 
 
@@ -28,8 +31,9 @@ const RainfallChart = props => (
 			]}
 		/>
 		{
-			<WeatherIcons name="wi-night-alt-snow" size={40} color="#66ff66" />
+			// <WeatherIcons name="wi-night-alt-snow" size={40} color="#66ff66" />
 		}
+		<SnowIcon size={50} />
 	</View>
 )
 
