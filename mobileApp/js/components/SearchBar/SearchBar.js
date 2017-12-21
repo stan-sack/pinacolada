@@ -46,7 +46,7 @@ class SearchBar extends React.Component {
 			},
 			container: {
 				flex: 1,
-				paddingTop: '5%',
+				paddingTop: '8%',
 				width: '90%'
 			}
 		}

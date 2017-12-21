@@ -43,7 +43,10 @@ class MapScreen extends React.Component {
 	render() {
 		return (
 			<View style={mapStyles.container}>
-				<StatusBar hidden />
+				<StatusBar
+					translucent
+					backgroundColor='rgba(0, 0, 0, 0.2)'
+				/>
 				<MapView.Animated
 					onPanDrag={() => {
 						this.searchBarRef.blur()
