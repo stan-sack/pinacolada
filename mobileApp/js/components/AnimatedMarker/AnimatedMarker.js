@@ -17,7 +17,12 @@ class AnimatedMarker extends React.Component {
 
 
 	componentDidMount() {
+		this.continueAnimation = true
 		this.runAnimation()
+	}
+
+	componentWillUnmount() {
+		this.continueAnimation = false
 	}
 
 
@@ -40,6 +45,7 @@ class AnimatedMarker extends React.Component {
 						toValue: 1,
 						duration: 1000,
 						delay: 200,
+						useNativeDriver: true,
 						// easing: Easing.inOut
 					},
 				),
@@ -48,13 +54,14 @@ class AnimatedMarker extends React.Component {
 					{
 						toValue: 0,
 						duration: 1000,
+						useNativeDriver: true,
 						// easing: Easing.inOut
 					},
 				),
 			]),
 		])
 			.start(() => {
-				this.runAnimation()
+				this.continueAnimation && this.runAnimation()
 			})
 	}
 
@@ -62,6 +69,8 @@ class AnimatedMarker extends React.Component {
 		return (
 			<View>
 				<AnimatedMapMarker
+					renderToHardwareTextureAndroid
+					shouldRasterizeIOS
 					anchor={{ x: 0.5, y: 0.5 }}
 					style={{ opacity: this.state.markerBackgroundOpacity, zIndex: 50 }}
 					coordinate={this.props.position}

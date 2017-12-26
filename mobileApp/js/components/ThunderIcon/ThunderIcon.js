@@ -11,13 +11,14 @@ class ThunderIcon extends React.Component {
 		this.state = {
 			timer: new Animated.Value(0),
 		}
-		this.animationLength = 2000
+		this.animationLength = 2000 / props.speed
 		this.stages = []
 		this.stages.push(Animated.timing(
 			this.state.timer,
 			{
 				toValue: 1,
 				duration: this.animationLength * 0.05,
+				useNativeDriver: true,
 			},
 		))
 
@@ -26,6 +27,7 @@ class ThunderIcon extends React.Component {
 			{
 				toValue: 2,
 				duration: this.animationLength * 0.1,
+				useNativeDriver: true,
 			},
 		))
 
@@ -34,6 +36,7 @@ class ThunderIcon extends React.Component {
 			{
 				toValue: 3,
 				duration: this.animationLength * 0.05,
+				useNativeDriver: true,
 			},
 		))
 
@@ -42,6 +45,7 @@ class ThunderIcon extends React.Component {
 			{
 				toValue: 4,
 				duration: this.animationLength * 0.05,
+				useNativeDriver: true,
 			},
 		))
 
@@ -50,6 +54,7 @@ class ThunderIcon extends React.Component {
 			{
 				toValue: 5,
 				duration: this.animationLength * 0.25,
+				useNativeDriver: true,
 			},
 		))
 
@@ -58,6 +63,7 @@ class ThunderIcon extends React.Component {
 			{
 				toValue: 6,
 				duration: this.animationLength * 0.3,
+				useNativeDriver: true,
 			},
 		))
 
@@ -66,19 +72,25 @@ class ThunderIcon extends React.Component {
 			{
 				toValue: 7,
 				duration: this.animationLength * 0.2,
+				useNativeDriver: true,
 			},
 		))
 	}
 
 
 	componentDidMount() {
+		this.continueAnimation = true
 		this.runAnimation()
+	}
+
+	componentWillUnmount() {
+		this.continueAnimation = false
 	}
 
 	runAnimation() {
 		this.state.timer.setValue(0)
 		Animated.sequence(this.stages).start(
-			() => { this.runAnimation() }
+			() => { this.continueAnimation && this.runAnimation() }
 		)
 	}
 
@@ -99,31 +111,34 @@ class ThunderIcon extends React.Component {
 							39.7,7.3c61.8,0,112-50.2,112-112S461.8,64,400,64z'} />
 					</Svg>
 				</View>
-				<Animated.View style={{
-					position: 'absolute',
-					opacity: this.state.timer.interpolate({
-						inputRange:  [0, 1, 2, 3, 4, 5, 6, 7],
-						outputRange: [0, 1, 0, 0, 1, 1, 0, 0],
-					}),
-					transform:[
-						{
-							translateX: this.state.timer.interpolate({
-								inputRange:  [0, 5, 6, 7],
-								outputRange: [2, -0.25, -0.25, 2],
-							})
-						},
-						{
-							translateY: this.state.timer.interpolate({
-								inputRange:  [0, 5, 6, 7],
-								outputRange: [-4, 0.25, 0.25, -4],
-							})
-						},
-						{
-							scaleY: 0.95,
-							scaleX: 1.1
-						}
-					]
-				}}>
+				<Animated.View
+					renderToHardwareTextureAndroid
+					shouldRasterizeIOS
+					style={{
+						position: 'absolute',
+						opacity: this.state.timer.interpolate({
+							inputRange:  [0, 1, 2, 3, 4, 5, 6, 7],
+							outputRange: [0, 1, 0, 0, 1, 1, 0, 0],
+						}),
+						transform:[
+							{
+								translateX: this.state.timer.interpolate({
+									inputRange:  [0, 5, 6, 7],
+									outputRange: [2 / 50 * this.props.size, -0.25 / 50 * this.props.size, -0.25 / 50 * this.props.size, 2 / 50 * this.props.size],
+								})
+							},
+							{
+								translateY: this.state.timer.interpolate({
+									inputRange:  [0, 5, 6, 7],
+									outputRange: [-4 / 50 * this.props.size, 0.25 / 50 * this.props.size, 0.25 / 50 * this.props.size, -4 / 50 * this.props.size],
+								})
+							},
+							{
+								scaleY: 0.95,
+								scaleX: 1.1
+							}
+						]
+					}}>
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Polygon
 							class={'bolt'}
@@ -136,7 +151,8 @@ class ThunderIcon extends React.Component {
 }
 
 ThunderIcon.propTypes = {
-	size: PropTypes.number.isRequired
+	size: PropTypes.number.isRequired,
+	speed: PropTypes.number.isRequired
 }
 
 const ThunderIconAnimated = Animated.createAnimatedComponent(ThunderIcon)

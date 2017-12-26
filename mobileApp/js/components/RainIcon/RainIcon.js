@@ -14,9 +14,9 @@ class RainIcon extends React.Component {
 			dropThreeTimer: new Animated.Value(0),
 		}
 
-		this.dropOneAnimationLength = 2000
-		this.dropTwoAnimationLength = 1900
-		this.dropThreeAnimationLength = 1800
+		this.dropOneAnimationLength = 2000 / props.speed
+		this.dropTwoAnimationLength = 1900 / props.speed
+		this.dropThreeAnimationLength = 1800 / props.speed
 
 		this.dropOneStages = []
 		this.dropOneStages.push(Animated.timing(
@@ -24,6 +24,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 1,
 				duration: this.dropOneAnimationLength * 0.1,
+				useNativeDriver: true,
 			},
 		))
 
@@ -32,6 +33,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 2,
 				duration: this.dropOneAnimationLength * 0.2,
+				useNativeDriver: true,
 			},
 		))
 
@@ -40,6 +42,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 3,
 				duration: this.dropOneAnimationLength * 0.3,
+				useNativeDriver: true,
 			},
 		))
 
@@ -48,6 +51,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 4,
 				duration: this.dropOneAnimationLength * 0.4,
+				useNativeDriver: true,
 			},
 		))
 
@@ -57,6 +61,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 1,
 				duration: this.dropTwoAnimationLength * 0.1,
+				useNativeDriver: true,
 			},
 		))
 
@@ -65,6 +70,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 2,
 				duration: this.dropTwoAnimationLength * 0.2,
+				useNativeDriver: true,
 			},
 		))
 
@@ -73,6 +79,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 3,
 				duration: this.dropTwoAnimationLength * 0.3,
+				useNativeDriver: true,
 			},
 		))
 
@@ -81,6 +88,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 4,
 				duration: this.dropTwoAnimationLength * 0.4,
+				useNativeDriver: true,
 			},
 		))
 
@@ -90,6 +98,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 1,
 				duration: this.dropThreeAnimationLength * 0.1,
+				useNativeDriver: true,
 			},
 		))
 
@@ -98,6 +107,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 2,
 				duration: this.dropThreeAnimationLength * 0.2,
+				useNativeDriver: true,
 			},
 		))
 
@@ -106,6 +116,7 @@ class RainIcon extends React.Component {
 			{
 				toValue: 3,
 				duration: this.dropThreeAnimationLength * 0.3,
+				useNativeDriver: true,
 			},
 		))
 
@@ -114,35 +125,41 @@ class RainIcon extends React.Component {
 			{
 				toValue: 4,
 				duration: this.dropThreeAnimationLength * 0.4,
+				useNativeDriver: true,
 			},
 		))
 	}
 
 
 	componentDidMount() {
+		this.continueAnimation = true
 		this.runDropOne()
 		setTimeout(() => { this.runDropTwo() }, 800)
 		setTimeout(() => { this.runDropThree() }, 500)
 	}
 
+	componentWillUnmount() {
+		this.continueAnimation = false
+	}
+
 	runDropOne() {
 		this.state.dropOneTimer.setValue(0)
 		Animated.sequence(this.dropOneStages).start(
-			() => { this.runDropOne() }
+			() => { this.continueAnimation && this.runDropOne() }
 		)
 	}
 
 	runDropTwo() {
 		this.state.dropTwoTimer.setValue(0)
 		Animated.sequence(this.dropTwoStages).start(
-			() => { this.runDropTwo() }
+			() => { this.continueAnimation && this.runDropTwo() }
 		)
 	}
 
 	runDropThree() {
 		this.state.dropThreeTimer.setValue(0)
 		Animated.sequence(this.dropThreeStages).start(
-			() => { this.runDropThree() }
+			() => { this.continueAnimation && this.runDropThree() }
 		)
 	}
 
@@ -167,6 +184,8 @@ class RainIcon extends React.Component {
 					</Svg>
 				</View>
 				<Animated.View
+					renderToHardwareTextureAndroid
+					shouldRasterizeIOS
 					style={{
 						position: 'absolute',
 						opacity: this.state.dropOneTimer.interpolate({
@@ -177,7 +196,7 @@ class RainIcon extends React.Component {
 							{
 								translateY: this.state.dropOneTimer.interpolate({
 									inputRange:  [0, 1, 3, 4],
-									outputRange: [-4, -3, 8, -4],
+									outputRange: [-4 / 50 * this.props.size, -3 / 50 * this.props.size, 8 / 50 * this.props.size, -4 / 50 * this.props.size],
 								})
 							}
 						]
@@ -188,6 +207,8 @@ class RainIcon extends React.Component {
 					</Svg>
 				</Animated.View>
 				<Animated.View
+					renderToHardwareTextureAndroid
+					shouldRasterizeIOS
 					style={{
 						position: 'absolute',
 						opacity: this.state.dropTwoTimer.interpolate({
@@ -198,7 +219,7 @@ class RainIcon extends React.Component {
 							{
 								translateY: this.state.dropTwoTimer.interpolate({
 									inputRange:  [0, 1, 3, 4],
-									outputRange: [-8.5, -7, 0.5, -8.5],
+									outputRange: [-8.5 / 50 * this.props.size, -7 / 50 * this.props.size, 0.5 / 50 * this.props.size, -8.5 / 50 * this.props.size],
 								})
 							}
 						]
@@ -209,6 +230,8 @@ class RainIcon extends React.Component {
 					</Svg>
 				</Animated.View>
 				<Animated.View
+					renderToHardwareTextureAndroid
+					shouldRasterizeIOS
 					style={{
 						position: 'absolute',
 						opacity: this.state.dropThreeTimer.interpolate({
@@ -219,7 +242,7 @@ class RainIcon extends React.Component {
 							{
 								translateY: this.state.dropThreeTimer.interpolate({
 									inputRange:  [0, 1, 3, 4],
-									outputRange: [-8.5, -7, 4, -8.5],
+									outputRange: [-8.5 / 50 * this.props.size, -7 / 50 * this.props.size, 4 / 50 * this.props.size, -8.5 / 50 * this.props.size],
 								})
 							}
 						]
@@ -235,7 +258,8 @@ class RainIcon extends React.Component {
 }
 
 RainIcon.propTypes = {
-	size: PropTypes.number.isRequired
+	size: PropTypes.number.isRequired,
+	speed: PropTypes.number.isRequired
 }
 
 const RainIconAnimated = Animated.createAnimatedComponent(RainIcon)
