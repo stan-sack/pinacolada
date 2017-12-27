@@ -1,5 +1,11 @@
 import { connect } from 'react-redux'
-import { setUserLocation, updatePositionOfInterest, updateCurrentViewport, updateNoRowsToDisplay, setShouldShowListView } from '../../modules/mapState/actionCreators'
+import { setUserLocation,
+	updatePositionOfInterest,
+	updateCurrentViewport,
+	updateNoRowsToDisplay,
+	setShouldShowListView,
+	setShouldShowSearchInput
+} from '../../modules/mapState/actionCreators'
 import MapScreen from './MapScreen'
 
 const mapDispatchToProps = {
@@ -7,7 +13,8 @@ const mapDispatchToProps = {
 	updatePositionOfInterest,
 	updateCurrentViewport,
 	updateNoRowsToDisplay,
-	setShouldShowListView
+	setShouldShowListView,
+	setShouldShowSearchInput
 }
 
 const mapStateToProps = state => ({
@@ -15,7 +22,8 @@ const mapStateToProps = state => ({
 	positionOfInterest: state.mapState.positionOfInterest,
 	currentViewport: state.mapState.currentViewport,
 	noRowsToDisplay: state.mapState.noRowsToDisplay,
-	shouldShowListView: state.mapState.shouldShowListView
+	shouldShowListView: state.mapState.shouldShowListView,
+	shouldShowSearchInput: state.mapState.shouldShowSearchInput
 })
 
 
