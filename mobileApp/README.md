@@ -10,6 +10,9 @@
 * You have a Github account
 * You have xCode installed
 * You have Android Studio installed
+* You have Java JDK 1.8 or higher. Read [this](https://www3.ntu.edu.sg/home/ehchua/programming/howto/JDK_Howto.html) to see how.
+* Add this line to your .bash_profile:
+ * `JAVA_HOME=$(/usr/libexec/java_home)`
 
 ## Contribution Guide
 
@@ -20,6 +23,7 @@
 
 ## Running a dev environment
 
+* Read [this](https://facebook.github.io/react-native/docs/running-on-device.html) if you want to run from an external device
 * `$ cd pinacolada/mobileApp`
 * `$ npm install`
 * `$ npm run android` or `$ npm run ios`
