@@ -7,7 +7,9 @@ import WeatherIcons from '../WeatherIcons'
 import RainIcon from '../RainIcon'
 import ThunderIcon from '../ThunderIcon'
 import SnowIcon from '../SnowIcon'
+import WindCloudIcon from '../WindCloudIcon'
 import SunCloudIcon from '../SunCloudIcon'
+import SunIcon from '../SunIcon'
 
 
 
@@ -31,10 +33,8 @@ const RainfallChart = props => (
 				{ x: 5, y: 7 }
 			]}
 		/>
-		{
-			// <WeatherIcons name="wi-night-alt-snow" size={40} color="#66ff66" />
-		}
-		<SunCloudIcon size={50} speed={1} />
+
+	<RainIcon size={100} speed={1} />
 	</View>
 )
 

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Animated, View, Easing } from 'react-native'
-// import { GooglePlacesAutocomplete } from '../../lib/GooglePlacesAutocomplete/GooglePlacesAutocomplete'
-// import Icon from 'react-native-vector-icons/EvilIcons'
+import { Animated, View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
 class RainIcon extends React.Component {
@@ -169,6 +167,7 @@ class RainIcon extends React.Component {
 				<View style={{ position: 'absolute' }}>
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={
 								'M400,64c-5.3,0-10.6,0.4-15.8,1.1C354.3,24.4,307.2,\
 								0,256,0s-98.3,24.4-128.2,65.1c-5.2-0.8-10.5-1.1-15.8-1.1C50.2,\
@@ -203,6 +202,7 @@ class RainIcon extends React.Component {
 					}}>
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={'M96,384c0,17.7,14.3,32,32,32s32-14.3,32-32s-32-64-32-64S96,366.3,96,384z'} />
 					</Svg>
 				</Animated.View>
@@ -226,6 +226,7 @@ class RainIcon extends React.Component {
 					}}>
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={'M225,480c0,17.7,14.3,32,32,32s32-14.3,32-32s-32-64-32-64S225,462.3,225,480z'} />
 					</Svg>
 				</Animated.View>
@@ -249,6 +250,7 @@ class RainIcon extends React.Component {
 					}}>
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={'M352,448c0,17.7,14.3,32,32,32s32-14.3,32-32s-32-64-32-64S352,430.3,352,448z'} />
 					</Svg>
 				</Animated.View>
@@ -258,8 +260,15 @@ class RainIcon extends React.Component {
 }
 
 RainIcon.propTypes = {
-	size: PropTypes.number.isRequired,
-	speed: PropTypes.number.isRequired
+	size: PropTypes.number,
+	speed: PropTypes.number,
+	colour: PropTypes.string
+}
+
+RainIcon.defaultProps = {
+	size: 50,
+	speed: 1,
+	colour: 'black'
 }
 
 const RainIconAnimated = Animated.createAnimatedComponent(RainIcon)

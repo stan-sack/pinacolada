@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Animated, View } from 'react-native'
-// import { GooglePlacesAutocomplete } from '../../lib/GooglePlacesAutocomplete/GooglePlacesAutocomplete'
-// import Icon from 'react-native-vector-icons/EvilIcons'
 import Svg, { Path } from 'react-native-svg'
 import transformUtil from '../../helpers/transformUtil'
 
@@ -267,8 +265,6 @@ class SnowIcon extends React.Component {
 			centreX: layout.height / 2,
 			centreY: layout.height / 2,
 		})
-
-		console.log(this.state)
 	}
 
 	flushTransformOne(ref, x, y, rotation) {
@@ -279,8 +275,8 @@ class SnowIcon extends React.Component {
 		let matrix = transformUtil.rotateZ(rotation.__getValue())
 		// let matrix = transformUtil.rotateZ(0, 0, 0, -9, -36)
 
-		transformUtil.transformRotateReturn(
-			matrix, { x: -(16/25.5) * this.state.centreX, y: (11/25.5) * this.state.centreY, z: 0 }
+		transformUtil.transformMutateReturn(
+			matrix, { x: -(16 / 25.5) * this.state.centreX, y: (11 / 25.5) * this.state.centreY, z: 0 }
 		)
 
 		let xVal = x.__getValue()
@@ -310,8 +306,8 @@ class SnowIcon extends React.Component {
 		let matrix = transformUtil.rotateZ(rotation.__getValue())
 		// let matrix = transformUtil.rotateZ(0, 0, 0, -9, -36)
 
-		transformUtil.transformRotateReturn(
-			matrix, { x: -(0/25.5) * this.state.centreX, y: (16/25.5) * this.state.centreY, z: 0 }
+		transformUtil.transformMutateReturn(
+			matrix, { x: -(0 / 25.5) * this.state.centreX, y: (16 / 25.5) * this.state.centreY, z: 0 }
 		)
 
 		let xVal = x.__getValue()
@@ -341,8 +337,8 @@ class SnowIcon extends React.Component {
 		let matrix = transformUtil.rotateZ(rotation.__getValue())
 		// let matrix = transformUtil.rotateZ(0, 0, 0, -9, -36)
 
-		transformUtil.transformRotateReturn(
-			matrix, { x: (17/25.5) * this.state.centreX, y: (13/25.5) * this.state.centreY, z: 0 }
+		transformUtil.transformMutateReturn(
+			matrix, { x: (17 / 25.5) * this.state.centreX, y: (13 / 25.5) * this.state.centreY, z: 0 }
 		)
 
 		let xVal = x.__getValue()
@@ -366,10 +362,14 @@ class SnowIcon extends React.Component {
 
 	render() {
 		return (
-			<View style={{ height: this.props.size, width: this.props.size, borderWidth: 0.5, borderColor: 'purple' }}>
+			<View style={{ height: this.props.size, width: this.props.size }}>
 				<View style={{ position: 'absolute' }}>
-					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
+					<Svg
+						viewBox={'0 0 512 512'}
+						height={this.props.size}
+						width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={
 								'M512,176c0-61.8-50.2-112-112-112c-5.3,0-10.6,0.4-15.8,\
 								1.1C354.3,24.4,307.2,0,256,0s-98.3,24.4-128.2,\
@@ -383,7 +383,7 @@ class SnowIcon extends React.Component {
 								19.7-6.1,30.5-6.1c44.2,0,80,35.8,80,80s-35.8,80-80,\
 								80C382.9,256,367.1,250.5,354.1,241.3z'
 							}
-							/>
+						/>
 					</Svg>
 				</View>
 				<Animated.View
@@ -398,12 +398,16 @@ class SnowIcon extends React.Component {
 							outputRange: [0, 1, 1, 0, 0],
 						}),
 					}}>
-					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
+					<Svg
+						viewBox={'0 0 512 512'}
+						height={this.props.size}
+						width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={
 								'M131.8,349.9c-1.5-5.6-7.3-8.9-12.9-7.4l-11.9,3.2c-1.1-1.5-2.2-3-3.6-4.4c-1.4-1.4-2.9-2.6-4.5-3.6l3.2-11.9c1.5-5.6-1.8-11.4-7.4-12.9c-5.6-1.5-11.4,1.8-12.9,7.4l-3.2,12.1c-3.8,0.3-7.5,1.2-10.9,2.9l-8.8-8.8c-4.1-4.1-10.8-4.1-14.8,0c-4.1,4.1-4.1,10.8,0,14.9l8.8,8.8c-1.6,3.5-2.6,7.2-2.9,11l-12,3.2c-5.6,1.5-9,7.2-7.5,12.9c1.5,5.6,7.3,8.9,12.9,7.4l11.9-3.2c1.1,1.6,2.2,3.1,3.7,4.5c1.4,1.4,2.9,2.6,4.4,3.6l-3.2,11.9c-1.5,5.6,1.8,11.4,7.4,12.9c5.6,1.5,11.3-1.8,12.8-7.4l3.2-12c3.8-0.3,7.5-1.3,11-2.9l8.8,8.8c4.1,4.1,10.7,4,14.8,0c4.1-4.1,4.1-10.7,0-14.8l-8.8-8.8c1.7-3.5,2.7-7.2,2.9-11l12.1-3.2C130,361.3,133.3,355.6,131.8,349.9z M88.6,371c-4.1,4.1-10.8,4.1-14.9,0c-4.1-4.1-4.1-10.8,0-14.8c4.1-4.1,10.8-4.1,14.9,0S92.6,366.9,88.6,371z'
 							}
-							/>
+						/>
 					</Svg>
 				</Animated.View>
 				<Animated.View
@@ -418,12 +422,16 @@ class SnowIcon extends React.Component {
 							outputRange: [0, 1, 1, 0, 0],
 						}),
 					}}>
-					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
+					<Svg
+						viewBox={'0 0 512 512'}
+						height={this.props.size}
+						width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={
 								'M304.8,437.6l-12.6-7.2c0.4-2.2,0.7-4.4,0.7-6.7c0-2.3-0.3-4.5-0.7-6.7l12.6-7.2c5.9-3.4,7.9-11,4.5-16.8c-3.4-5.9-10.9-7.9-16.8-4.5l-12.7,7.3c-3.4-2.9-7.2-5.2-11.5-6.7v-14.6c0-6.8-5.5-12.3-12.3-12.3s-12.3,5.5-12.3,12.3V389c-4.3,1.5-8.1,3.8-11.5,6.7l-12.7-7.3c-5.9-3.4-13.5-1.4-16.9,4.5c-3.4,5.9-1.4,13.4,4.5,16.8l12.5,7.2c-0.4,2.2-0.7,4.4-0.7,6.7c0,2.3,0.3,4.5,0.7,6.7l-12.5,7.2c-5.9,3.4-7.9,11-4.5,16.9s10.9,7.9,16.8,4.5l12.7-7.3c3.4,2.9,7.2,5.1,11.5,6.7V473c0,6.8,5.5,12.3,12.3,12.3s12.3-5.5,12.3-12.3v-14.6c4.3-1.5,8.2-3.8,11.5-6.7l12.7,7.3c5.9,3.4,13.4,1.4,16.8-4.5C312.8,448.6,310.7,441.1,304.8,437.6z M256,436c-6.8,0-12.3-5.5-12.3-12.3c0-6.8,5.5-12.3,12.3-12.3s12.3,5.5,12.3,12.3C268.3,430.5,262.8,436,256,436z'
 							}
-							/>
+						/>
 					</Svg>
 				</Animated.View>
 				<Animated.View
@@ -438,12 +446,16 @@ class SnowIcon extends React.Component {
 							outputRange: [0, 1, 1, 0, 0],
 						}),
 					}}>
-					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
+					<Svg
+						viewBox={'0 0 512 512'}
+						height={this.props.size}
+						width={this.props.size}>
 						<Path
+							fill={this.props.colour}
 							d={
 								'M474.2,396.2l-12.1-3.2c-0.3-3.8-1.2-7.5-2.9-11l8.8-8.8c4.1-4.1,4.1-10.8,0-14.9c-4.1-4.1-10.7-4.1-14.8,0l-8.8,8.8c-3.5-1.6-7.1-2.6-11-2.9l-3.2-12.1c-1.5-5.6-7.2-8.9-12.9-7.4c-5.6,1.5-8.9,7.3-7.4,12.9l3.2,11.9c-1.6,1.1-3.1,2.3-4.5,3.7c-1.4,1.4-2.5,2.9-3.6,4.5l-11.9-3.2c-5.6-1.5-11.4,1.9-12.9,7.4c-1.5,5.6,1.9,11.4,7.4,12.9l12,3.2c0.3,3.8,1.3,7.5,3,11l-8.8,8.8c-4.1,4.1-4.1,10.7,0,14.8c4.1,4.1,10.7,4.1,14.8,0l8.8-8.8c3.5,1.7,7.2,2.7,11,3l3.2,12c1.5,5.6,7.2,8.9,12.9,7.4c5.6-1.5,9-7.2,7.5-12.9l-3.2-11.9c1.5-1.1,3-2.2,4.5-3.6c1.4-1.4,2.5-2.9,3.6-4.5l11.9,3.2c5.6,1.5,11.4-1.9,12.9-7.4C483.1,403.5,479.8,397.8,474.2,396.2z M438.3,402.9c-4.1,4.1-10.8,4.1-14.9,0c-4.1-4.1-4.1-10.7,0-14.9c4.1-4.1,10.8-4.1,14.9,0C442.4,392.2,442.4,398.9,438.3,402.9z'
 							}
-							/>
+						/>
 					</Svg>
 				</Animated.View>
 
@@ -453,8 +465,15 @@ class SnowIcon extends React.Component {
 }
 
 SnowIcon.propTypes = {
-	size: PropTypes.number.isRequired,
-	speed: PropTypes.number.isRequired
+	size: PropTypes.number,
+	speed: PropTypes.number,
+	colour: PropTypes.string
+}
+
+SnowIcon.defaultProps = {
+	size: 50,
+	speed: 1,
+	colour: 'black'
 }
 
 const SnowIconAnimated = Animated.createAnimatedComponent(SnowIcon)

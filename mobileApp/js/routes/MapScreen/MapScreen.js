@@ -9,6 +9,8 @@ import AnimatedMarker from '../../components/AnimatedMarker'
 import { TILE_FOLDER_URL } from '../../config/aws'
 // import Icon from 'react-native-vector-icons/FontAwesome'
 import mapStyle from '../../assets/mapStyle'
+import { PermissionsAndroid } from 'react-native';
+
 
 class MapScreen extends React.Component {
 	constructor(props) {
@@ -17,19 +19,35 @@ class MapScreen extends React.Component {
 	}
 
 	componentWillMount() {
-		navigator.geolocation.getCurrentPosition(
-			position => this.props.setUserLocation(position.coords),
-			error => console.log(error),
-			{ enableHighAccuracy: true, timeout: 60000, maximumAge: 1000 },
-		)
+		this.requestCameraPermission().then(() => {
+			navigator.geolocation.getCurrentPosition(
+				position => this.props.setUserLocation(position.coords),
+				error => console.log(error),
+				{ enableHighAccuracy: true, timeout: 60000, maximumAge: 1000 },
+			)
 
-		this.watchId = navigator.geolocation.watchPosition(
-			position => this.props.setUserLocation(position.coords),
-			error => console.log(error),
-			{
-				enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10,
-			},
-		)
+			this.watchId = navigator.geolocation.watchPosition(
+				position => this.props.setUserLocation(position.coords),
+				error => console.log(error),
+				{
+					enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10,
+				},
+			)
+		})
+	}
+
+	async requestCameraPermission() {
+		try {
+			await PermissionsAndroid.request(
+				PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+				{
+					'title': 'Pina Colada location access',
+					'message': 'Allow Pina Colada to access your location for the best possible whether forecast.'
+				}
+			)
+		} catch (err) {
+			console.warn(err)
+		}
 	}
 
 	componentWillUnmount() {
@@ -46,7 +64,7 @@ class MapScreen extends React.Component {
 				<StatusBar
 					translucent
 					backgroundColor='rgba(0, 0, 0, 0.2)'
-				/>
+					/>
 				<MapView.Animated
 					onPanDrag={() => {
 						this.searchBarRef.blur()

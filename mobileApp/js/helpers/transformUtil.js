@@ -1,7 +1,7 @@
 
 import MatrixMath from 'react-native/Libraries/Utilities/MatrixMath'
 
-function transformRotateReturn(matrix, origin) {
+function transformMutateReturn(matrix, origin) {
 	const { x, y, z } = origin
 
 	const translate = MatrixMath.createIdentityMatrix()
@@ -12,6 +12,7 @@ function transformRotateReturn(matrix, origin) {
 	MatrixMath.reuseTranslate3dCommand(untranslate, -x, -y, -z)
 	MatrixMath.multiplyInto(matrix, matrix, untranslate)
 }
+
 
 function transform(matrix, newPos) {
 	const { x, y, z } = newPos
@@ -45,9 +46,19 @@ function rotateZ(deg) {
 	]
 }
 
+function scale(x, y, z) {
+	return [
+		x, 0, 0, 0,
+		0, y, 0, 0,
+		0, 0, z, 0,
+		0, 0, 0, 1,
+	]
+}
+
 export default {
 	rotateX,
 	rotateZ,
 	transform: transform,
-	transformRotateReturn: transformRotateReturn,
+	scale: scale,
+	transformMutateReturn: transformMutateReturn,
 }
