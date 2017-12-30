@@ -4,6 +4,7 @@ import { getAspectRatio } from '../../helpers/meta'
 
 const initialState = {
 	shouldShowListView: false,
+	shouldShowSearchInput: false,
 	noRowsToDisplay: 0,
 	userLocation: undefined,
 	positionOfInterest: undefined,
@@ -41,6 +42,11 @@ export default (state = initialState, action) => {
 		return {
 			...state,
 			shouldShowListView: action.payload,
+		}
+	case actions.SET_SHOULD_SHOW_SEARCH_INPUT:
+		return {
+			...state,
+			shouldShowSearchInput: action.payload,
 		}
 	default:
 		return state

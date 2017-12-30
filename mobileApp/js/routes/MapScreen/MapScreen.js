@@ -68,18 +68,26 @@ class MapScreen extends React.Component {
 				<MapView.Animated
 					onPanDrag={() => {
 						this.searchBarRef.blur()
+						this.props.setShouldShowSearchInput(false)
+						this.props.setShouldShowListView(false)
 						// this.props.updateShowGeoSearchList(false)
 					}}
 					onPress={() => {
 						this.searchBarRef.blur()
+						this.props.setShouldShowSearchInput(false)
+						this.props.setShouldShowListView(false)
 						// this.props.updateShowGeoSearchList(false)
 					}}
 					onLongPress={() => {
 						this.searchBarRef.blur()
+						this.props.setShouldShowSearchInput(false)
+						this.props.setShouldShowListView(false)
 						// this.props.updateShowGeoSearchList(false)
 					}}
 					onMarkerSelect={() => {
 						this.searchBarRef.blur()
+						this.props.setShouldShowSearchInput(false)
+						this.props.setShouldShowListView(false)
 						// this.props.updateShowGeoSearchList(false)
 					}}
 					customMapStyle={mapStyle}
@@ -113,7 +121,9 @@ class MapScreen extends React.Component {
 					setTextInputRef={this.setSearchBarRef}
 					textInputRef={this.searchBarRef}
 					userLocation={this.props.userLocation}
-					updatePositionOfInterest={this.props.updatePositionOfInterest} />
+					updatePositionOfInterest={this.props.updatePositionOfInterest}
+					shouldShowSearchInput={this.props.shouldShowSearchInput}
+					setShouldShowSearchInput={this.props.setShouldShowSearchInput} />
 				<RainfallChart />
 			</View>
 		)
@@ -131,6 +141,8 @@ MapScreen.propTypes = {
 	currentViewport: PropTypes.object,
 	shouldShowListView: PropTypes.bool.isRequired,
 	setShouldShowListView: PropTypes.func.isRequired,
+	shouldShowSearchInput: PropTypes.bool.isRequired,
+	setShouldShowSearchInput: PropTypes.func.isRequired
 }
 
 
