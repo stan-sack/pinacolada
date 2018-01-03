@@ -29,3 +29,8 @@ export const setShouldShowListView = bool => ({
 	type: actions.SET_SHOULD_SHOW_LIST_VIEW,
 	payload: bool
 })
+
+export const setShouldShowSearchInput = bool => ({
+	type: actions.SET_SHOULD_SHOW_SEARCH_INPUT,
+	payload: bool
+})
