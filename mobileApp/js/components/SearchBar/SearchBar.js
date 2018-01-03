@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, StyleSheet, Dimensions, TouchableHighlight } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { GooglePlacesAutocomplete } from '../../lib/GooglePlacesAutocomplete/GooglePlacesAutocomplete'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import * as Animatable from 'react-native-animatable'
@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
 				color: '#1faadb',
 			},
 			textInput: {
-				// textAlign: 'center'
+				// paddingLeft: 10,
 			},
 			listView: {
 				backgroundColor: 'white',
@@ -61,10 +61,11 @@ class SearchBar extends React.Component {
 	getSearchIconStyle() {
 		return {
 			display: !this.props.shouldShowSearchInput && !this.state.animating ? 'flex' : 'none',
-			alignSelf: 'flex-end',
+			alignSelf: 'center',
 			height: 44,
 			width: 44,
 			backgroundColor: 'rgba(200, 200, 200, 0.7)',
+			borderRadius: 22,
 		}
 	}
 
@@ -127,23 +128,23 @@ class SearchBar extends React.Component {
 						predefinedPlacesAlwaysVisible={false}
 						renderRightButton={
 							() =>
-								<TouchableHighlight
+								<TouchableOpacity
 									style={styles.iconContainer}
 									onPress={() => {
 										this.props.setShouldShowSearchInput(false)
 									}}>
 									<Icon name='close' size={25} />
-								</TouchableHighlight>
+								</TouchableOpacity>
 						} />
 				</Animatable.View>
 				<Animatable.View ref='searchIcon'>
-					<TouchableHighlight
+					<TouchableOpacity
 						style={[styles.iconContainer, this.getSearchIconStyle()]}
 						onPress={() => {
 							this.props.setShouldShowSearchInput(true)
 						}}>
 						<Icon name='search' size={25} />
-					</TouchableHighlight>
+					</TouchableOpacity>
 				</Animatable.View>
 			</View>
 		)
