@@ -36,6 +36,12 @@ class MapScreen extends React.Component {
 		})
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.shouldShowSearchInput) {
+			this.searchBarRef.focus()
+		}
+	}
+
 	async requestCameraPermission() {
 		try {
 			await PermissionsAndroid.request(
