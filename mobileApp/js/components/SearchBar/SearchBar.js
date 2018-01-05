@@ -135,6 +135,16 @@ class SearchBar extends React.Component {
 									}}>
 									<Icon name='close' size={25} />
 								</TouchableOpacity>
+						}
+						renderLeftButton={
+							() =>
+								<TouchableOpacity
+									style={styles.iconContainer}
+									onPress={() => {
+										// Trigger search
+									}}>
+									<Icon name='search' size={25} />
+								</TouchableOpacity>
 						} />
 				</Animatable.View>
 				<Animatable.View ref='searchIcon'>
