@@ -131,6 +131,7 @@ class SearchBar extends React.Component {
 								<TouchableOpacity
 									style={styles.iconContainer}
 									onPress={() => {
+										this.props.clearSearchInput()
 										this.props.setShouldShowSearchInput(false)
 									}}>
 									<Icon name='close' size={25} />
@@ -185,6 +186,7 @@ SearchBar.propTypes = {
 	setShouldShowListView: PropTypes.func.isRequired,
 	shouldShowSearchInput: PropTypes.bool.isRequired,
 	setShouldShowSearchInput: PropTypes.func.isRequired,
+	clearSearchInput: PropTypes.func.isRequired,
 }
 
 export default SearchBar

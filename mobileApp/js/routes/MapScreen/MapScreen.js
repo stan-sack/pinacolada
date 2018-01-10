@@ -16,6 +16,7 @@ class MapScreen extends React.Component {
 	constructor(props) {
 		super(props)
 		this.setSearchBarRef = this.setSearchBarRef.bind(this)
+		this.clearSearchInput = this.clearSearchInput.bind(this)
 	}
 
 	componentWillMount() {
@@ -62,6 +63,10 @@ class MapScreen extends React.Component {
 
 	setSearchBarRef(ref) {
 		this.searchBarRef = ref
+	}
+
+	clearSearchInput() {
+		this.searchBarRef.setNativeProps({ text: '' })
 	}
 
 	render() {
@@ -129,7 +134,8 @@ class MapScreen extends React.Component {
 					userLocation={this.props.userLocation}
 					updatePositionOfInterest={this.props.updatePositionOfInterest}
 					shouldShowSearchInput={this.props.shouldShowSearchInput}
-					setShouldShowSearchInput={this.props.setShouldShowSearchInput} />
+					setShouldShowSearchInput={this.props.setShouldShowSearchInput}
+					clearSearchInput={this.clearSearchInput} />
 				<RainfallChart />
 			</View>
 		)
