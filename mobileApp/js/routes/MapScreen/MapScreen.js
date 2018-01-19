@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, StyleSheet, Dimensions, StatusBar } from 'react-native'
-import EStyleSheet from 'react-native-extended-stylesheet'
+import { View, StyleSheet, Dimensions, StatusBar, PermissionsAndroid } from 'react-native'
 import MapView, { PROVIDER_GOOGLE, UrlTile } from 'react-native-maps'
 import SearchBar from '../../components/SearchBar'
 import RainfallChart from '../../components/RainfallChart'
@@ -9,7 +8,6 @@ import AnimatedMarker from '../../components/AnimatedMarker'
 import { TILE_FOLDER_URL } from '../../config/aws'
 // import Icon from 'react-native-vector-icons/FontAwesome'
 import mapStyle from '../../assets/mapStyle'
-import { PermissionsAndroid } from 'react-native';
 
 
 class MapScreen extends React.Component {
@@ -75,7 +73,7 @@ class MapScreen extends React.Component {
 				<StatusBar
 					translucent
 					backgroundColor='rgba(0, 0, 0, 0.2)'
-					/>
+				/>
 				<MapView.Animated
 					onPanDrag={() => {
 						this.searchBarRef.blur()

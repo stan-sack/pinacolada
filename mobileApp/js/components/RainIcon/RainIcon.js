@@ -195,7 +195,8 @@ class RainIcon extends React.Component {
 							{
 								translateY: this.state.dropOneTimer.interpolate({
 									inputRange:  [0, 1, 3, 4],
-									outputRange: [-4 / 50 * this.props.size, -3 / 50 * this.props.size, 8 / 50 * this.props.size, -4 / 50 * this.props.size],
+									outputRange: [-4 / 50 * this.props.size, -3 / 50 * this.props.size, 8 / 50 *
+									this.props.size, -4 / 50 * this.props.size],
 								})
 							}
 						]
@@ -219,7 +220,8 @@ class RainIcon extends React.Component {
 							{
 								translateY: this.state.dropTwoTimer.interpolate({
 									inputRange:  [0, 1, 3, 4],
-									outputRange: [-8.5 / 50 * this.props.size, -7 / 50 * this.props.size, 0.5 / 50 * this.props.size, -8.5 / 50 * this.props.size],
+									outputRange: [-8.5 / 50 * this.props.size, -7 / 50 * this.props.size, 0.5 / 50 *
+									this.props.size, -8.5 / 50 * this.props.size],
 								})
 							}
 						]
@@ -243,7 +245,8 @@ class RainIcon extends React.Component {
 							{
 								translateY: this.state.dropThreeTimer.interpolate({
 									inputRange:  [0, 1, 3, 4],
-									outputRange: [-8.5 / 50 * this.props.size, -7 / 50 * this.props.size, 4 / 50 * this.props.size, -8.5 / 50 * this.props.size],
+									outputRange: [-8.5 / 50 * this.props.size, -7 / 50 * this.props.size, 4 / 50 *
+									this.props.size, -8.5 / 50 * this.props.size],
 								})
 							}
 						]

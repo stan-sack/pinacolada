@@ -1,16 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { View, Dimensions, Text } from 'react-native'
-import { VictoryLine, VictoryVoronoiContainer, VictoryScatter, VictoryGroup } from 'victory-native'
+// import PropTypes from 'prop-types'
+import { View, Dimensions } from 'react-native'
+import { VictoryLine, VictoryVoronoiContainer } from 'victory-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import WeatherIcons from '../WeatherIcons'
-import RainIcon from '../RainIcon'
-import ThunderIcon from '../ThunderIcon'
-import SnowIcon from '../SnowIcon'
+// import WeatherIcons from '../WeatherIcons'
+// import RainIcon from '../RainIcon'
+// import ThunderIcon from '../ThunderIcon'
+// import SnowIcon from '../SnowIcon'
 import WindCloudIcon from '../WindCloudIcon'
-import SunCloudIcon from '../SunCloudIcon'
-import SunIcon from '../SunIcon'
-
+// import SunCloudIcon from '../SunCloudIcon'
+// import SunIcon from '../SunIcon'
 
 
 const RainfallChart = props => (
@@ -23,7 +22,7 @@ const RainfallChart = props => (
 			interpolation='natural'
 			containerComponent={
 				<VictoryVoronoiContainer
-					labels={(d) => "y: " + d.y} />
+					labels={(d) => 'y: ' + d.y} />
 			}
 			data={[
 				{ x: 1, y: 2 },
@@ -34,7 +33,7 @@ const RainfallChart = props => (
 			]}
 		/>
 
-	<RainIcon size={100} speed={1} />
+		<WindCloudIcon size={100} speed={1} />
 	</View>
 )
 
@@ -49,7 +48,7 @@ const styles = EStyleSheet.create({
 })
 
 RainfallChart.propTypes = {
-	data: PropTypes.array
+	// data: PropTypes.array
 }
 
 export default RainfallChart

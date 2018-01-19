@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Animated, View, Easing } from 'react-native'
-import Svg, { Path, Circle } from 'react-native-svg'
+import Svg, { Path } from 'react-native-svg'
 import transformUtil from '../../helpers/transformUtil'
 
 class SunIcon extends React.Component {
@@ -229,7 +229,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M256,144c-61.8,0-112,50.2-112,112s50.2,112,112,112s112-50.2,112-112S317.8,144,256,144z M256,336c-44.2,0-80-35.8-80-80s35.8-80,80-80s80,35.8,80,80S300.2,336,256,336z'} />
+							d={'M256,144c-61.8,0-112,50.2-112,112s50.2,112,112,112s112-50.2,112-112S317.8,144,\
+							256,144z M256,336c-44.2,0-80-35.8-80-80s35.8-80,80-80s80,35.8,80,80S300.2,336,256,336z'} />
 					</Svg>
 				</Animated.View>
 
@@ -248,7 +249,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M112,256c0-8.8-7.2-16-16-16H64c-8.8,0-16,7.2-16,16s7.2,16,16,16h32C104.8,272,112,264.8,112,256z'} />
+							d={'M112,256c0-8.8-7.2-16-16-16H64c-8.8,0-16,7.2-16,16s7.2,16,16,16h32C104.8,272,\
+							112,264.8,112,256z'} />
 					</Svg>
 				</Animated.View>
 
@@ -267,7 +269,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M131.5,154.2c6.3,6.2,16.4,6.2,22.6,0c6.3-6.2,6.3-16.4,0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6,0c-6.2,6.2-6.2,16.4,0,22.6L131.5,154.2z'} />
+							d={'M131.5,154.2c6.3,6.2,16.4,6.2,22.6,0c6.3-6.2,6.3-16.4,\
+							0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6,0c-6.2,6.2-6.2,16.4,0,22.6L131.5,154.2z'} />
 					</Svg>
 				</Animated.View>
 
@@ -286,7 +289,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M256,112c8.8,0,16-7.2,16-16V64c0-8.8-7.2-16-16-16s-16,7.2-16,16v32C240,104.8,247.2,112,256,112z'} />
+							d={'M256,112c8.8,0,16-7.2,16-16V64c0-8.8-7.2-16-16-16s-16,7.2-16,16v32C240,104.8,\
+							247.2,112,256,112z'} />
 					</Svg>
 				</Animated.View>
 
@@ -305,7 +309,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M380.4,154.2l22.6-22.6c6.2-6.2,6.2-16.4,0-22.6s-16.4-6.2-22.6,0l-22.6,22.6c-6.2,6.2-6.2,16.4,0,22.6C364.1,160.4,374.2,160.4,380.4,154.2z'} />
+							d={'M380.4,154.2l22.6-22.6c6.2-6.2,6.2-16.4,0-22.6s-16.4-6.2-22.6,0l-22.6,22.6c-6.2,\
+							6.2-6.2,16.4,0,22.6C364.1,160.4,374.2,160.4,380.4,154.2z'} />
 					</Svg>
 				</Animated.View>
 
@@ -325,7 +330,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M448,240h-32c-8.8,0-16,7.2-16,16s7.2,16,16,16h32c8.8,0,16-7.2,16-16S456.8,240,448,240z'} />
+							d={'M448,240h-32c-8.8,0-16,7.2-16,16s7.2,16,16,16h32c8.8,0,16-7.2,16-16S456.8,240,\
+							448,240z'} />
 					</Svg>
 				</Animated.View>
 
@@ -344,7 +350,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M380.5,357.8c-6.3-6.2-16.4-6.2-22.6,0c-6.3,6.2-6.3,16.4,0,22.6l22.6,22.6c6.2,6.2,16.4,6.2,22.6,0s6.2-16.4,0-22.6L380.5,357.8z'} />
+							d={'M380.5,357.8c-6.3-6.2-16.4-6.2-22.6,0c-6.3,6.2-6.3,16.4,0,22.6l22.6,22.6c6.2,6.2,\
+							16.4,6.2,22.6,0s6.2-16.4,0-22.6L380.5,357.8z'} />
 					</Svg>
 				</Animated.View>
 
@@ -363,7 +370,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M256,400c-8.8,0-16,7.2-16,16v32c0,8.8,7.2,16,16,16s16-7.2,16-16v-32C272,407.2,264.8,400,256,400z'} />
+							d={'M256,400c-8.8,0-16,7.2-16,16v32c0,8.8,7.2,16,16,16s16-7.2,16-16v-32C272,407.2,\
+							264.8,400,256,400z'} />
 					</Svg>
 				</Animated.View>
 
@@ -382,7 +390,8 @@ class SunIcon extends React.Component {
 					<Svg viewBox={'0 0 512 512'} height={this.props.size} width={this.props.size}>
 						<Path
 							fill={this.props.colour}
-							d={'M131.6,357.8l-22.6,22.6c-6.2,6.2-6.2,16.4,0,22.6s16.4,6.2,22.6,0l22.6-22.6c6.2-6.3,6.2-16.4,0-22.6C147.9,351.6,137.8,351.6,131.6,357.8z'} />
+							d={'M131.6,357.8l-22.6,22.6c-6.2,6.2-6.2,16.4,0,22.6s16.4,6.2,22.6,\
+							0l22.6-22.6c6.2-6.3,6.2-16.4,0-22.6C147.9,351.6,137.8,351.6,131.6,357.8z'} />
 					</Svg>
 				</Animated.View>
 			</View>

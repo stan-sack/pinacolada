@@ -7,7 +7,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = state => ({
-    data: state.rainfallChartState.data
+	data: state.rainfallChartState.data
 })
 
 

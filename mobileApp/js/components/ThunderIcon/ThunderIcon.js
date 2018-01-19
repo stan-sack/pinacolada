@@ -126,13 +126,15 @@ class ThunderIcon extends React.Component {
 							{
 								translateX: this.state.timer.interpolate({
 									inputRange:  [0, 5, 6, 7],
-									outputRange: [2 / 50 * this.props.size, -0.25 / 50 * this.props.size, -0.25 / 50 * this.props.size, 2 / 50 * this.props.size],
+									outputRange: [2 / 50 * this.props.size, -0.25 / 50 * this.props.size, -0.25 / 50 *
+									this.props.size, 2 / 50 * this.props.size],
 								})
 							},
 							{
 								translateY: this.state.timer.interpolate({
 									inputRange:  [0, 5, 6, 7],
-									outputRange: [-4 / 50 * this.props.size, 0.25 / 50 * this.props.size, 0.25 / 50 * this.props.size, -4 / 50 * this.props.size],
+									outputRange: [-4 / 50 * this.props.size, 0.25 / 50 * this.props.size, 0.25 / 50 *
+									this.props.size, -4 / 50 * this.props.size],
 								})
 							},
 							{
